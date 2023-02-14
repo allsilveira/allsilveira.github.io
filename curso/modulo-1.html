@@ -1,0 +1,1496 @@
+<!DOCTYPE html><!--  This site was created in Webflow. http://www.webflow.com  -->
+<!--  Last Published: Fri Sep 03 2021 21:15:03 GMT+0000 (Coordinated Universal Time)  -->
+<html data-wf-page="6132866aeb2b4f3c8cb0e55c" data-wf-site="61328588219ec1cbc8a4eaec">
+
+<head>
+  <meta charset="utf-8">
+
+  <!-- ======================================================================== -->
+  <!-- ============== INCLUIR TÍTULO DO MÓDULO ======================= -->
+  <!-- ======================================================================== -->
+
+  <title>Módulo 1 - donec pretium vulputate sapien nec  </title>
+  <meta content="modulo_1" property="og:title">
+  <meta content="modulo_1" property="twitter:title">
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+  <meta content="Webflow" name="generator">
+  <link href="css/normalize.css" rel="stylesheet" type="text/css">
+  <link href="css/webflow.css" rel="stylesheet" type="text/css">
+  <link href="./vendor/lity/css/lity.min.css" rel="stylesheet">
+  <link href="css/final-fundacao-bradesco-pg.webflow.css" rel="stylesheet" type="text/css">
+  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js" type="text/javascript"></script>
+  <script
+    type="text/javascript">WebFont.load({ google: { families: ["Open Sans:300,300italic,400,400italic,600,600italic,700,700italic,800,800italic", "Montserrat:100,100italic,200,200italic,300,300italic,400,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic"] } });</script>
+  <!-- [if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js" type="text/javascript"></script><![endif] -->
+  <script
+    type="text/javascript">!function (o, c) { var n = c.documentElement, t = " w-mod-"; n.className += t + "js", ("ontouchstart" in o || o.DocumentTouch && c instanceof DocumentTouch) && (n.className += t + "touch") }(window, document);</script>
+  <link href="images/favicon.ico" rel="shortcut icon" type="image/x-icon">
+  <link href="images/webclip.png" rel="apple-touch-icon">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="js/adapt_scorm.js"></script>
+  <script type="text/javascript">
+    function strReplace(haystack = '', needle, replacement) {
+      var temp = haystack.split(needle);
+      return temp.join(replacement);
+    }
+    $(document).ready(function () {
+      const f = 'grayscale(0%) brightness(100%) contrast(100%)'
+      $('body').children().css('filter', f)
+      const filters = $('a.toogle-switch').data('filter', f)
+      filters.off().on('click', (e) => {
+        const t = $(e.currentTarget)
+        const ball = t.find('.toogle-switch-before')
+        const back = t.find('.toogle-switch-checked')
+        let filter
+
+        if (Math.round(ball.position().left) === 4) {
+          gsap.to(ball[0], { left: 24, duration: 0.2 })
+          gsap.to(back[0], { backgroundColor: 'rgb(48,48,48)', duration: 0.2 })
+
+          if (t.data('id') === 'moon') {
+            filter = t.data('filter').replace(/grayscale\(\d+\%\)/, 'grayscale(100%)')
+
+          } else if (t.data('id') === 'sun') {
+            const element = document.body;
+            element.classList.toggle("dark-mode");
+          }
+
+        } else {
+          gsap.to(ball[0], { left: 4, duration: 0.2 })
+          gsap.to(back[0], { backgroundColor: '#898989', duration: 0.2 })
+
+          if (t.data('id') === 'moon') {
+            filter = t.data('filter').replace(/grayscale\(\d+\%\)/, 'grayscale(0%)')
+
+          } else if (t.data('id') === 'sun') {
+            const element = document.body;
+            $(element).removeClass('dark-mode')
+          }
+        }
+
+        filters.data('filter', filter)
+        gsap.to($('body').children(), { filter, duration: 0.2 })
+
+      })
+
+      $('body').removeAttr('style')
+
+      const menubt = $('.dropdown-trigger').data('open', false)
+      const menu = $('.nav-menu')
+
+      menubt.off().on('click', () => {
+        if (!menubt.data('open')) {
+          menubt.data('open', true)
+          gsap.fromTo(menu, { display: 'block' }, { autoAlpha: 1, duration: 0.3 })
+
+          $(window).off('pointerdown').on('pointerdown', (e) => {
+            const mouseX = e.clientX;
+            const mouseY = e.clientY;
+
+            const bounds = menu[0].getBoundingClientRect();
+
+            if (
+              mouseX < bounds.x ||
+              mouseY < bounds.y ||
+              mouseX > bounds.x + bounds.width ||
+              mouseY > bounds.y + bounds.height
+            ) {
+              menuClose()
+            }
+          })
+        }
+      })
+
+      function darkMode() {
+        const element = document.body;
+        element.classList.toggle("dark-mode");
+      }
+
+      function highlightSelection() {
+        let selection;
+
+        //Get the selected stuff
+        if (window.getSelection) {
+          selection = window.getSelection();
+        } else if (typeof document.selection != "undefined") {
+          selection = document.selection;
+        }
+
+        //Get a the selected content, in a range object
+        let range = selection.getRangeAt(0);
+
+        //If the range spans some text, and inside a tag, set its css class.
+        if (range && !selection.isCollapsed) {
+          if (selection.anchorNode.parentNode == selection.focusNode.parentNode) {
+            const timestamp = +new Date();
+            let span = document.createElement('span');
+            span.className = 'highlight';
+            span.setAttribute('id', 'ts-' + timestamp);
+
+            const colorHighlight = document.querySelector('body').getAttribute('data-highlighter-color');
+            span.setAttribute('style', 'background: ' + colorHighlight + ';');
+            span.textContent = selection.toString();
+            selection.deleteFromDocument();
+            range.insertNode(span);
+            //                        range.surroundContents(span);
+
+            const tsId = document.querySelector('#ts-' + timestamp);
+            tsId.parentNode.classList.add('has-marked-text');
+
+            let getIdParentNode = tsId.parentNode.getAttribute('id');
+            if (getIdParentNode == null) {
+              tsId.parentNode.setAttribute('id', timestamp);
+              tsId.parentNode.setAttribute('data-timestamp', timestamp);
+            }
+            getIdParentNode = tsId.parentNode.getAttribute('id');
+
+            const htmlMarked = document.getElementById(getIdParentNode).innerHTML;
+            setCookie('highlight-' + getIdParentNode, htmlMarked);
+          } else {
+            console.log('Você não pode fazer marcações de texto em parágrafos diferentes. " +\n' +
+              '                    "Faça as marcações em um parágrafo e havendo a nessecidadade ' +
+              'de marcar texto em outro, " +\n' +
+              '                    "faça separadamente.');
+            alert("Oops!\n\nVocê não pode fazer marcações de texto em parágrafos diferentes. " +
+              "Faça as marcações em um parágrafo e havendo a nessecidadade de marcar texto em outro, " +
+              "faça separadamente.");
+          }
+        }
+      }
+
+      document.addEventListener('mouseup', event => {
+
+        const getClassHighlighter = document.getElementsByClassName('enable-highlighter');
+        if (getClassHighlighter.length > 0) {
+
+          let highlighted = false;
+          let selection = window.getSelection();
+          let selectedText = selection.toString();
+          let startPoint = window.getSelection().getRangeAt(0).startOffset;
+          let endPoint = window.getSelection().getRangeAt(0).endOffset;
+          let anchorTag = selection.anchorNode.parentNode;
+          let focusTag = selection.focusNode.parentNode;
+
+          if (selectedText.length === (endPoint - startPoint)) {
+            highlighted = true;
+
+            if (anchorTag.className !== "highlight") {
+              highlightSelection();
+            } else {
+              console.log(selectedText);
+              let afterText = selectedText + "<span class = 'highlight'>" + anchorTag.innerHTML.substr(endPoint) + "</span>";
+              anchorTag.innerHTML = anchorTag.innerHTML.substr(0, startPoint);
+              anchorTag.insertAdjacentHTML('afterend', afterText);
+            }
+
+          } else {
+            if (anchorTag.className !== "highlight" && focusTag.className !== "highlight") {
+              highlightSelection();
+              highlighted = true;
+            }
+
+          }
+
+          if (anchorTag.className === "highlight" && focusTag.className === 'highlight' && !highlighted) {
+            highlighted = true;
+
+            let afterHtml = anchorTag.innerHTML.substr(startPoint);
+            let outerHtml = selectedText.substr(afterHtml.length, selectedText.length - endPoint - afterHtml.length);
+            let anchorInnerhtml = anchorTag.innerHTML.substr(0, startPoint);
+            let focusInnerHtml = focusTag.innerHTML.substr(endPoint);
+            let focusBeforeHtml = focusTag.innerHTML.substr(0, endPoint);
+            selection.deleteFromDocument();
+            anchorTag.innerHTML = anchorInnerhtml;
+            focusTag.innerHTml = focusInnerHtml;
+            let anchorafterHtml = afterHtml + outerHtml + focusBeforeHtml;
+            anchorTag.insertAdjacentHTML('afterend', anchorafterHtml);
+          }
+
+          if (anchorTag.className === "highlight" && !highlighted) {
+            highlighted = true;
+            let Innerhtml = anchorTag.innerHTML.substr(0, startPoint);
+            let afterHtml = anchorTag.innerHTML.substr(startPoint);
+            let outerHtml = selectedText.substr(afterHtml.length, selectedText.length);
+            selection.deleteFromDocument();
+            anchorTag.innerHTML = Innerhtml;
+            anchorTag.insertAdjacentHTML('afterend', afterHtml + outerHtml);
+          }
+
+          if (focusTag.className === 'highlight' && !highlighted) {
+            highlighted = true;
+            let beforeHtml = focusTag.innerHTML.substr(0, endPoint);
+            let outerHtml = selectedText.substr(0, selectedText.length - beforeHtml.length);
+            selection.deleteFromDocument();
+            focusTag.innerHTml = focusTag.innerHTML.substr(endPoint);
+            outerHtml += beforeHtml;
+            focusTag.insertAdjacentHTML('beforebegin', outerHtml);
+
+
+          }
+          if (!highlighted) {
+            highlightSelection();
+          }
+          $('.highlight').each(function () {
+            if ($(this).html() == '') {
+              $(this).remove();
+            }
+          });
+          selection.removeAllRanges();
+        }
+      });
+
+      let highlighters = document.querySelectorAll('.highlighter-color');
+      for (const highlighter of highlighters) {
+        highlighter.addEventListener('click', (e) => {
+          const current = e.currentTarget;
+          const color = current.dataset.color;
+
+          // desativa cores
+
+          for (const highlighterD of highlighters) {
+            highlighterD.classList.remove('active');
+          }
+
+          current.classList.add('active');
+
+          if (color != '') {
+            document.body.classList.add('enable-highlighter');
+            document.body.setAttribute('data-highlighter-color', color);
+
+          } else {
+            document.body.classList.remove('enable-highlighter');
+            document.body.removeAttribute('data-highlighter-color');
+          }
+        });
+      }
+
+      const getClassHighlighter = document.getElementsByClassName('enable-highlighter');
+      if (getClassHighlighter.length > 0) {
+        console.log('ok');
+      }
+
+      const body = document.querySelector('body');
+      const flags = document.querySelectorAll('.flag-toogle-switch');
+      for (const flag of flags) {
+        flag.addEventListener('click', (e) => {
+          const current = e.currentTarget;
+          const dataFunction = current.dataset.function;
+
+          if (current.classList.contains('checked')) {
+            current.classList.remove('checked');
+            current.classList.add('unchecked');
+
+            enableFunction(dataFunction, 'disable', current);
+          } else {
+            current.classList.remove('unchecked');
+            current.classList.add('checked');
+
+            if (dataFunction == 'contraste') {
+              const flagBrilho = document.querySelector('#f-brilho');
+              if (flagBrilho.classList.contains('checked')) {
+                flagBrilho.classList.add('unchecked');
+              }
+            }
+
+            if (dataFunction == 'brilho') {
+              const flagContraste = document.querySelector('#f-contraste');
+              if (flagContraste.classList.contains('checked')) {
+                flagContraste.classList.add('unchecked');
+              }
+            }
+
+            enableFunction(dataFunction, 'enable', current);
+          }
+        });
+      }
+
+
+      function menuClose() {
+        $(window).off('pointerdown')
+        gsap.to(menu, {
+          autoAlpha: 0, duration: 0.3, onComplete: () => {
+            menu.css('display', 'none')
+            menubt.data('open', false)
+          }
+        })
+      }
+
+
+      var div = '#content-1',
+        contador = 0,
+        obj_tratados = [
+          div,
+          div + ' p',
+          div + ' h1',
+          div + ' h2',
+        ],
+        reset_fonte = [],
+        reset_linha = [];
+      setDefaultZoom(obj_tratados, reset_fonte, reset_linha, contador);
+      $('#a_mais,#a_menos,#a_reset').on('click', function () {
+        var id = $(this).attr('id');
+        var min = 6;
+        var max = 150;
+        for (var i in obj_tratados) {
+          var tratados = $(obj_tratados[i]);
+          var tamanho_fonte = strReplace(tratados.css('fontSize'), 'px', '');
+          var tamanho_entrelinha = strReplace(tratados.css('lineHeight'), 'px', '');
+          switch (id) {
+            case 'a_mais':
+              if (tamanho_fonte <= max) {
+                tamanho_fonte++;
+                // tamanho entrelinha aumento
+                tamanho_entrelinha = (tamanho_fonte * 1.8);
+                tamanho_entrelinha++;
+                contador++;
+              }
+              break;
+            case 'a_menos':
+              if (tamanho_fonte >= min) {
+                tamanho_fonte--;
+                // tamanho entrelinha redução;
+                var val = tamanho_entrelinha - (tamanho_entrelinha * 3 / 100);
+                // tamanho_entrelinha = arredondarValor(val);
+                tamanho_entrelinha = (tamanho_fonte * 1.8);
+                tamanho_entrelinha--;
+                contador++;
+              }
+              break;
+            case 'a_reset':
+            default:
+              // resetar 
+              tamanho_fonte = reset_fonte[i];
+              tamanho_entrelinha = reset_linha[i];
+              break;
+          }
+          tratados.css({ 'fontSize': tamanho_fonte + 'px', 'lineHeight': tamanho_entrelinha + 'px' });
+        }
+        //cancel a click event
+        return false;
+      });
+      function setDefaultZoom(obj_tratados, reset_fonte, reset_linha, contador) {
+        for (var i in obj_tratados) {
+          var tratados = $(obj_tratados[i]);
+          if (contador == 0) {
+            reset_fonte[i] = strReplace(tratados.css('fontSize'), 'px', '');
+            reset_linha[i] = strReplace(tratados.css('lineHeight'), 'px', '');
+          }
+        }
+      }
+    });
+
+    window.onscroll = function () { myFunction() };
+
+    function myFunction() {
+      var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      var scrolled = (winScroll / height) * 100;
+      document.getElementById("myBar").style.width = scrolled + "%";
+    }
+  </script>
+
+  <style>
+    .ocutar {
+      display: none;
+    }
+  </style>
+
+  <script>
+    $(() => {
+      // const abertura = $('.link-nav .text-nav').parent()
+      // abertura.off().on('click', () => {
+      //   scorm.gotoModule(0)
+      // })
+
+      const nav = $('.link-nav .percentual-avanco')
+
+      const check = nav.find('.div-block-153')
+      check.remove()
+
+      nav.children().removeClass('ocultar-1')
+      nav.children().removeClass('ocultar-2')
+
+      nav.find('.barra-progresso').addClass('barra-zerada')
+      nav.find('.percent').removeClass('concluido').text('0%')
+
+      const current = 1
+
+      scorm.current = current
+
+      if (scorm.data.mod[current].full) {
+        scorm.setLoc(current, 0)
+      }
+
+
+      // if(scorm.data.curr !== current) {
+      //   if(scorm.data.mod[current].pct > 0) {
+      //     if(window.top.confirm('Você quer continuar de onde parou?')){
+      //       scorm.gotoModule(scorm.data.curr)
+      //     } else {
+      //       scorm.setLoc(0, 0)
+      //       scorm.current = current
+      //     }
+      //   }
+      //   else {
+      //     scorm.setLoc(0, 0)
+      //     scorm.current = current
+      //   }        
+      // }
+      // else {
+      //   scorm.current = current
+      // }
+
+      nav.parent().each((index, item) => {
+        const it = $(item)
+        it.data('id', index + 1)
+        const module = scorm.data.mod[index + 1]
+        if (module.full) {
+          it.find('.barra1').addClass('ocutar')
+          it.find('.barra-progresso').addClass('ocutar')
+          it.find('.percent').before(check.clone(true)).addClass('concluido').text('Concluído')
+        } else {
+          if (module.pct > 0) {
+            const bp = it.find('.barra-progresso').removeClass('barra-zerada').css('width', `${module.pct}px`)
+            it.find('.percent').text(`${module.pct}%`)
+          }
+        }
+      })
+      // .off().on('click', gotoModule)
+
+      // $('#avancar-button').off().on('click', () => {
+      //   scorm.gotoModule(1)
+      // })
+
+      $('#concluir-button-end-modulo').off().on('click', () => {
+        $(window.top).off()
+        window.top.removeEventListener('beforeunload', window.top.endListener);
+        scorm.send()
+        let new_window = window.top.open(window.top.location, '_self')
+        new_window.removeEventListener('beforeunload', new_window.endListener)
+        new_window.close()
+      })
+
+      scorm.onProgress = (pct) => {
+        const index = scorm.data.curr
+        const mod = scorm.data.mod[index]
+        const tg = $(nav[index - 1])
+
+        if (!mod.full) {
+          tg.find('.barra-progresso').removeClass('barra-zerada').css('width', `${pct}px`)
+          tg.find('.percent').text(`${pct}%`)
+        } else {
+          if (tg.find('.percent').text() !== 'Concluído') {
+            tg.find('.barra1').addClass('ocutar')
+            tg.find('.barra-progresso').addClass('ocutar')
+            tg.find('.percent').before(check.clone(true)).addClass('concluido').text('Concluído')
+          }
+        }
+      }
+
+      function gotoModule(e) {
+        const target = $(e.currentTarget)
+        const id = target.data('id')
+
+        if ((scorm.data.mod[id].full || scorm.data.mod[id - 1].pct === 100) && id !== scorm.current) {
+          scorm.gotoModule(id)
+        }
+      }
+    })
+  </script>
+  <script type="text/javascript">
+
+    function abrirJanela(pagina, largura, altura) {
+      // Definindo centro da tela
+      var esquerda = (screen.width - largura) / 2;
+      var topo = (screen.height - altura) / 2;
+      // Abre a nova janela
+      minhaJanela = window.open(pagina, '', 'height=' + altura + ', width=' + largura + ', top=' + topo + ', left=' + esquerda);
+    }
+  </script>
+
+  <script>
+    $(() => {
+      $("#animated-arrow").off().on('click', (e) => {
+        e.preventDefault()
+        gsap.to("html", { scrollTo: "#animated-arrow-target", duration: 1 })
+      })
+    })
+  </script>
+
+
+
+  <style>
+    /* IMAGEM DESTAQUE E TEXTO */
+    .imagem1 {
+      background-image: url("images/img-mod1/cod04.jpg");
+    }
+
+    /* IMAGENS SLIDES */
+
+    .img1a {
+      background-image: url("images/img-mod1/slider-1a.jpg");
+      background-position: 50% 50%;
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+
+    .img1b {
+      background-image: url("images/img-mod1/slider-1b.jpg");
+      background-position: 50% 50%;
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+
+    #constructor-modal .modal-dialog {
+      max-width: 95%;
+    }
+
+    @media (min-width: 768px) {
+      #constructor-modal .modal-dialog {
+        max-width: 60%;
+      }
+    }
+  </style>
+</head>
+
+<body class="body-home">
+  <div class="capa-modulo wf-section">
+    <div class="main-capa">
+      <div class="titulo">
+        <h4 class="modulo-titulo">Módulo 1</h4>
+
+        <!-- ================================================================ -->
+        <!-- ============== INCLUIR TÍTULO DO MÓDULO  ======================= -->
+        <!-- ================================================================ -->
+
+        <h1 class="heading"><strong class="bold-text-91">Lorem <em>ipsum</em> e<br>
+            dolor sit amet, consectetur.</strong></h1>
+        <div class="linha-branca"></div>
+        <a href="" id="animated-arrow" data-w-id="7d80a05a-3461-8a45-d9ea-7e7bbfb45f19"
+          style="-webkit-transform:translate3d(0, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);opacity:0"
+          class="setaa w-inline-block"><img src="images/arrow-whitte.png" loading="lazy"
+            data-w-id="19b31c16-65ed-b662-9fc2-141051a748aa"
+            sizes="(max-width: 1279px) 40px, (max-width: 1439px) 3vw, 40px"
+            srcset="images/arrow-whitte-p-500.png 500w, images/arrow-whitte.png 512w" alt=""></a>
+      </div>
+    </div>
+    <div class="img-capa bg-img-capa"></div>
+  </div>
+  <div id="animated-arrow-target" class="content wf-section">
+    <div id="content-1">
+      <div class="bg-apresentacao">
+        <div class="box--fundo" style="padding-top: 20px; padding-bottom: 30px;">
+          <div style="height: 60px;"></div>
+
+          <!-- PARAGRAFO -->
+
+
+          <p class="p-cont" style="margin-top: 60px;" id="">
+            <b>Autora:</b> Profª. Drª. Regina Marquez e Silva</b><br>
+
+            <b>Revisão:</b> Fernando Altamires</b></p><br><br>
+
+
+      
+
+ 
+
+          <div class="destaque-titulo">
+            <h1 class="heading-6">Lorem, ipsum dolor sit <em>amet</em></h1>
+          </div>
+
+        <h1 class="titulo-conteudo-h1">H2 - Sed commodo odio at lacus porttitor suscipit</h1>
+        <h2 class="titulo-conteudo-h2">H3 - Mauris id dapibus purus</h2>
+        <h3 class="heading-5">H4 - Non blandit mauris metus</h3>
+        <p class="p-cont">Pellentesque ullamcorper odio quis enim ornare euismod. Donec scelerisque, arcu tempus
+          convallis efficitur, augue odio viverra sem, et volutpat nulla sem a erat. Duis fringilla augue vitae leo
+          eleifend ullamcorper. Maecenas dignissim, magna et volutpat pretium, quam dui dignissim enim, quis luctus
+          risus urna eu urna. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis
+          egestas. Praesent sollicitudin magna mollis, elementum augue a, rutrum sem.</p><br>
+
+
+        <p data-w-id="4874a766-01d2-44cf-7618-ad2e77b839be" style="opacity:0" class="p-citacao">Lorem ipsum dolor sit
+          amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis
+          viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo
+          cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere.<br><br><b>Fonte: A autora. (2023)</b></p><br>
+
+          <h1 class="titulo-conteudo-h1">Objetivos de Aprendizagem</h1><br>
+
+                  <div style="display:none" class="box-modal-link">
+          <p class="p-cont-2 modal">Ao criarmos uma classe, estabelecemos um “tipo”. A partir dessa classe, criamos uma
+            variável. Nesse sentido, tomamos como exemplo a criação de uma classe com nome “Carro”. Acompanhe o passo a
+            passo na sequência! <br><br>Posteriormente, um novo objeto “C1” para essa <a href="#"
+              class="abrir-modal">classe</a>. <br></p>
+          <div class="shadow-page">
+            <a href="#" class="link-block-2 w-inline-block"><img src="images/close-icon_1close-icon.png" loading="lazy"
+                data-w-id="44bc5974-1753-9617-5843-ef4462731e03" alt=""></a>
+          </div>
+          <div class="box-fixed-img-modal"><img
+              src="https://uploads-ssl.webflow.com/60f73d79808c9b53c32caa5b/610a612b94a2e380982baac2_central-processing-unit-computer-processor-close-up_166178-191.jpg"
+              loading="lazy" alt="" class="image-27">
+            <div class="box-img-img"></div>
+          </div>
+          <p class="p-cont-2 modal">Ao criarmos uma classe, estabelecemos um “tipo”. A partir dessa classe, criamos uma
+            variável. Nesse sentido, tomamos como exemplo a criação de uma classe com nome “Carro”. Acompanhe o passo a
+            passo na sequência! <br><br>Posteriormente, um novo objeto “C1” para essa <a href="#"
+              class="abrir-modal">classe</a>. <br></p>
+        </div>
+
+
+
+        <ul role="list" class="bullet-conteudo">
+          <li class="list-item">Nullam sit amet commodo purus, sed vestibulum ante. </li>
+          <li class="list-item">Maecenas consectetur lacus justo, eget lacinia dolor posuere in. In hac habitasse platea
+            dictumst. Etiam eu erat id ipsum gravida finibus in sed urna. </li>
+          <li class="list-item">Cras consectetur auctor ante vitae facilisis. Proin finibus arcu magna, ac semper massa
+            finibus sit amet. Pellentesque ut dignissim mi.</li>
+        </ul>
+        <ol role="list" class="list">
+          <li class="list-item">Maecenas consectetur lacus justo, eget lacinia dolor posuere in.</li>
+          <li class="list-item">Proin finibus arcu magna, ac semper massa finibus sit amet. Pellentesque ut dignissim
+            mi. Phasellus lectus urna, mattis quis fermentum varius, suscipit id dui.</li>
+          <li class="list-item">Nunc laoreet tortor ut tempus pretium.</li>
+        </ol>
+
+
+
+
+
+
+        <div class="box-img-texto">
+          <div class="div-block-150">
+            <p class="p-img-e-texto">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in
+              eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam
+              libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus
+              tristique posuere.</p>
+          </div>
+          <div class="img-text-img"></div>
+        </div>
+
+
+
+
+          <p class="p-cont">Lorem ipsum dolor sit amet consectetur <em>adipisicing</em> (reiciendis dignissimos
+            distinctio, nobis ducimus officia
+            praesentium id asperiores, veniam voluptatibus exercitationem temporibus! Illo, ipsum explicabo! Lorem ipsum
+            dolor sit amet, consectetur adipisicing elit
+            <em>mobile</em>.<br><br>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit
+            <em>podcast</em>? Lorem ipsum dolor sit amet consectetur adipisicing elit <em>mobile</em> ipsum dolor.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus impedit cum culpa
+            quasi provident, voluptatem placeat ad unde illum maxime
+            officia nam itaque debitis nulla sint natus odit neque eaque. Lorem ipsum dolor, sit amet consectetur
+            adipisicing elit. Soluta provident quod quos quam illum
+            blanditiis nostrum ut optio rerum tempore, ex, dicta delectus natus explicabo veritatis? Veniam sed facilis
+            voluptatum!
+          </p>
+
+
+        <div data-w-id="9f4167f1-d83f-661a-8304-5a8660ad23b4" style="opacity:0" class="texto-destaque">
+          <p class="paragraph-179">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in
+            eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam
+            libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus
+            tristique posuere.
+            <br><br><b>Fonte: A autora. (2023)</b></p>
+        </div>
+
+          <p class="p-cont">Lorem ipsum dolor sit amet consectetur <em>adipisicing</em> (reiciendis dignissimos
+            distinctio, nobis ducimus officia
+            praesentium id asperiores, veniam voluptatibus exercitationem temporibus! Illo, ipsum explicabo! Lorem ipsum
+            dolor sit amet, consectetur adipisicing elit
+            <em>mobile</em>.<br><br>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit
+            <em>podcast</em>? Lorem ipsum dolor sit amet consectetur adipisicing elit <em>mobile</em> ipsum dolor.
+          </p>
+
+
+
+          <!-- BOX Destaque -->
+        <div class="box-atencao">
+          <div class="fundo-icon fundo-napratica"><img
+              src="https://uploads-ssl.webflow.com/610d6c929ae0c193176ccad0/610d6c929ae0c185346ccb04_na-pratica-br.png"
+              loading="lazy" alt="" class="image-23"></div>
+          <div class="content-box-destaque box-content-1">
+            <h3 class="titulo-destaque titulo-pratica">Destaque</h3>
+            <div class="cont-box-p p-cont">Ximaximi nitatus aut aut etur rehenimi, suntaborio que videbit, tecta si
+              blabo. Itatia disaut qui officimi, sequo omnimol umquiaalitaIpitat quam cone prae. Ut estrum</div>
+          </div>
+        </div>
+          <!-- FIM Destaque -->
+
+
+          <p class="p-cont"><br>Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus impedit cum culpa
+            quasi provident, voluptatem placeat ad unde illum maxime
+            officia nam itaque debitis nulla sint natus odit neque eaque. Lorem ipsum dolor, sit amet consectetur
+            adipisicing elit. Soluta provident quod quos quam illum
+            blanditiis nostrum ut optio rerum tempore, ex, dicta delectus natus explicabo veritatis? Veniam sed facilis
+            voluptatum!</p>
+
+          <!-- TÍTULO H2 -->
+          <h1 class="titulo-conteudo-h1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus impedit cum
+          </h1>
+          <!-- FIM H2 -->
+
+          <p class="p-cont">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ea similique repudiandae natus
+            tempore molestias. Nihil, nobis accusamus voluptas voluptatum,
+            quaerat sed saepe labore, ad autem nam alias consequuntur hic tempora?Lorem ipsum dolor sit amet consectetur
+            adipisicing elit. Laboriosam autem iure in quo facere quam
+            asperiores, eius voluptas dolore esse quis itaque aperiam velit reiciendis non explicabo totam veniam
+            aliquid.<br><br>
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Obcaecati quod laborum repellat similique! Eaque
+            ex facere cum. Quasi architecto voluptatem, optio aliquid,
+            sequi asperiores incidunt, laboriosam id dicta amet minus? Lorem ipsum dolor sit, amet consectetur
+            adipisicing elit. Aspernatur tempore corporis quo possimus ullam nemo.
+            Delectus, ex, suscipit aliquid, minima consectetur sequi aliquam recusandae asperiores officiis laboriosam
+            totam. Maiores, iusto?
+          </p>
+
+          <!-- PODCAST -->
+          <div class="box-podcast">
+            <div class="box-img-video podcast-icon"><img src="images/podcast_1podcast.png" loading="lazy" alt=""
+                class="image-26"></div>
+            <div class="div-block-151">
+              <h1 data-w-id="4874a766-01d2-44cf-7618-ad2e77b839f8" style="opacity:0" class="titulo-destaque h3-poscast">
+                <em>Podcast</em>
+              </h1>
+              <div class="linha-branca linha-content"></div>
+              <p data-w-id="4874a766-01d2-44cf-7618-ad2e77b839fb" style="opacity:0" class="p-cont branco-p">Lorem ipsum
+                dolor sit, amet consectetur adipisicing elit.
+              </p>
+
+              </p>
+
+              <div class="html-embed-2 w-embed">
+                <div>
+                  <audio controls="">
+                    <source
+                      src="https://videos3.fb.org.br/FundacaoBradesco/Externos/DE/EV/Aplicacoes_Mobile/AplicMobile_podcast_2_trilha.mp3"
+                      type="audio/mp3">
+                  </audio>
+                </div>
+              </div>
+              <p data-w-id="4874a766-01d2-44cf-7618-ad2e77b839fb" style="opacity:0" class="p-cont branco-p">Lorem o <a
+                  href="#" onclick="javascript:abrirJanela('pdfs/integra/Podcast 2.pdf', 600, 500);"
+                  class="link-3">aqui</a> consectetur adipisicing <em>podcast</em>.<br>
+            </div>
+            <!-- ACESSIBILIDADE -->
+            <p class="elemento-acessibilidade"
+              style="height: 0 !important; width: 0 !important; position: absolute !important; overflow: hidden !important; opacity: 0 !important; padding: 0 !important;">
+            </p>
+          </div>
+          <!-- FIM PODCAST -->
+
+          <p class="p-cont"><br>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo animi facere a maiores
+            rerum, sint neque. Id reiciendis sapiente obcaecati
+            quia sit, pariatur qui. Quasi ullam natus quae omnis vel. Lorem, ipsum dolor sit amet consectetur
+            adipisicing elit. Iusto id vitae corrupti, repellendus
+            inventore veniam illo officia. Numquam perspiciatis voluptas id recusandae excepturi. Inventore eius quod
+            doloribus natus dolor quo!</p>
+
+          <!-- BOX SAIBA MAIS -->
+          <div class="box-atencao">
+            <div class="fundo-icon fundo-atencao" style="background-color: #a9298f;"><img
+                src="images/saiba-mais-br_1saiba-mais-br.png" loading="lazy" alt="" class="image-23"></div>
+            <div class="content-box-destaque box-content-1">
+              <h3 class="titulo-destaque tutilo-atencaooi" style="color: #a9298f;">Saiba mais</h3>
+              <div class="cont-box-p p-cont">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo recusandae nam incidunt quidem totam
+                  dolor! Voluptates debitis atque corrupti! Earum eius
+                  obcaecati corporis mollitia explicabo illo perspiciatis velit cupiditate esse. Lorem ipsum dolor sit
+                  amet consectetur adipisicing elit. Consequuntur
+                  ratione assumenda tenetur? Fugiat ab quas dignissimos asperiores iste et officia? Neque, iste
+                  similique! Minus, alias molestias ratione ducimus iusto error. <a href="#"
+                    onclick="javascript:abrirJanela('https://www.youtube.com/watch?v=CMLk0Y-9bUc', 600, 500);"
+                    class="link-2">Lorem ipsum dolor sit amet</a>, recusandae nam incidunt quidem totam.</p>
+              </div>
+            </div>
+          </div>
+          <!-- FIM BOX SAIBA MAIS -->
+
+
+          <p class="p-cont">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quae architecto excepturi
+            provident aliquid eaque modi. In ea consectetur possimus officiis facilis
+            blanditiis assumenda soluta reiciendis omnis suscipit. Illo, tenetur illum?<br><br>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat et totam obcaecati ipsa velit minima, ab
+            commodi quis hic illo quisquam nulla? Quam, consequuntur quaerat
+            placeat dolor soluta facilis atque?<br><br>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto voluptas perferendis in ipsam, dolores,
+            minima culpa assumenda quaerat, qui eveniet ipsa a. Deleniti est
+            corporis, id repellat in qui a?</p>
+
+          <div id="aqui" class="destaque-titulo">
+            <h1 class="heading-6">Lorem ipsum dolor</h1>
+          </div>
+
+          <p class="p-cont">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Alias fugiat aspernatur quasi
+            temporibus, esse sint veniam itaque praesentium voluptate numquam fugit
+            ipsa. Ea ad voluptates incidunt repellat quibusdam non? Suscipit. Lorem, ipsum dolor sit amet consectetur
+            adipisicing elit. Nesciunt illum aliquid, quae quibusdam asperiores adipisci
+            ipsum. Reiciendis minima voluptatem quaerat repudiandae ullam sequi delectus soluta aliquid quos eos.
+            Fugiat, culpa?</p>
+
+          <!-- BOX Glossário -->
+          <div class="box-atencao">
+            <div data-w-id="76ec7998-2f35-1f17-a100-7092b97502f8" class="fundo-icon fundo-entendaconceito"><img
+                src="images/entenda-conceito-br_1entenda-conceito-br.png" loading="lazy" alt="" class="image-23"></div>
+            <div class="content-box-destaque box-content-1">
+              <h3 class="titulo-destaque titulo-entenda">Glossário</h3>
+              <div class="cont-box-p p-cont">
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Hic sit, deserunt dicta culpa harum
+                  repudiandae, sapiente earum nihil sed rem nisi provident beatae dolorum.
+                  Minima eaque autem molestiae vel reiciendis.</p>
+              </div>
+            </div>
+          </div>
+          <!-- FIM BOX Glossário -->
+
+
+          <p class="p-cont">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quae architecto excepturi
+            provident aliquid eaque modi. In ea consectetur possimus officiis facilis
+            blanditiis assumenda soluta reiciendis omnis suscipit. Illo, tenetur illum?<br><br>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat et totam obcaecati ipsa velit minima, ab
+            commodi quis hic illo quisquam nulla? Quam, consequuntur quaerat
+            placeat dolor soluta facilis atque?<br><br>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto voluptas perferendis in ipsam, dolores,
+            minima culpa assumenda quaerat, qui eveniet ipsa a. Deleniti est
+            corporis, id repellat in qui a?</p>
+
+
+          <!-- SLIDE IMAGENS -->
+          <!-- ALTERAR CLASS E INCLUIR NO CSS NO TOPO DESTA PAGINA -->
+          <div class="box-slider">
+            <div data-animation="slide" data-duration="500" data-infinite="1" class="slider-3 w-slider">
+
+              <div class="mask-3 w-slider-mask">
+                <!-- ALTERAR CLASS IMAGEM1 -->
+                <div class="slide w-slide img1a">
+                  <div class="div_conteudo_slider slide01 teste">
+                    <p class="p-slider">Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi dolorem magni
+                      eius dolores voluptas harum consectetur quo amet debitis? Accusamus
+                      adipisci illum omnis incidunt ducimus iste voluptas, sed saepe ea.</p>
+                  </div>
+                  <!-- ACESSIBILIDADE -->
+                  <p class="elemento-acessibilidade"
+                    style="height: 0 !important; width: 0 !important; position: absolute !important; overflow: hidden !important; opacity: 0 !important; padding: 0 !important;">
+                    #PraCegoVer: Excepturi dolorem magni eius dolores voluptas harum consectetur quo amet debitis?
+                    Accusamus
+                    adipisci illum omnis incidunt.</p>
+                </div>
+
+                <!-- ALTERAR CLASS IMAGEM2 -->
+                <div class="slide-2 w-slide img1b">
+                  <div class="div_conteudo_slider slide01 teste">
+                    <p class="p-slider">Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi dolorem magni
+                      eius dolores voluptas harum consectetur quo amet debitis? Accusamus
+                      adipisci illum omnis incidunt ducimus iste voluptas, sed saepe ea.</p>
+                  </div>
+                  <!-- ACESSIBILIDADE -->
+                  <p class="elemento-acessibilidade"
+                    style="height: 0 !important; width: 0 !important; position: absolute !important; overflow: hidden !important; opacity: 0 !important; padding: 0 !important;">
+                    #PraCegoVer: Excepturi dolorem magni eius dolores voluptas harum consectetur quo amet debitis?
+                    Accusamus
+                    adipisci illum omnis incidunt.</p>
+                </div>
+
+              </div>
+              <div class="w-slider-arrow-left">
+                <div class="w-icon-slider-left"></div>
+              </div>
+              <div class="w-slider-arrow-right">
+                <div class="w-icon-slider-right"></div>
+              </div>
+              <div class="w-slider-nav w-round"></div>
+            </div>
+          </div>
+          <!-- FIM SLIDE IMAGENS -->
+
+          <p class="p-cont">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Praesentium facilis enim sint?
+            Soluta assumenda quo pariatur consequuntur, quisquam ipsum porro magnam aliquid,
+            nisi quam aliquam tempora ab ipsam dolorem! Dolorem? Lorem ipsum dolor sit amet consectetur adipisicing
+            elit. Fugit, consequuntur ut quos fuga, accusantium amet ex ab, dignissimos rem
+            at modi ipsa pariatur perspiciatis impedit temporibus aliquam quidem tempore dolorum.</p>
+
+          <!-- IMAGEM -->
+          <!-- ALTERAR ENDEREÇO DA IMAGEM, LEGENDA E FONTE (SE NECESSÁRIO ALTERAR WIDTH NA DIV)-->
+          <div class="box-img" style="width: 100%; max-width: 700px; min-width: 360px;">
+            <p class="p-cont-font"><b>Figura 1:</b>Lorem ipsum dolor sit amet, consectetur</p>
+            <!--<p class="titulo-elemento">Ambiente de desenvolvimento Android Studio</p>--><img
+              src="images/img-mod1/img27.jpg" data-lity loading="lazy" style="opacity:0"
+              data-w-id="4874a766-01d2-44cf-7618-ad2e77b83a0a"
+              alt="#PraCegoVer: na figura, temos um print do ambiente de desenvolvimento Android Studio. Trata-se de uma tela escura dividida em quatro partes: na coluna da esquerda, existe o dashboard, ao lado dela mais ao centro, o painel com as linhas de código, à direita, um painel com imagens. Na parte inferior, existe um painel visor com informações de desempenho do aplicativo a ser criado, incluindo código, visualização e outros menus."
+              title="#PraCegoVer: na figura, temos um print do ambiente de desenvolvimento Android Studio. Trata-se de uma tela escura dividida em quatro partes: na coluna da esquerda, existe o dashboard, ao lado dela mais ao centro, o painel com as linhas de código, à direita, um painel com imagens. Na parte inferior, existe um painel visor com informações de desempenho do aplicativo a ser criado, incluindo código, visualização e outros menus."
+              class="image-24">
+            <p class="p-cont-font"><b>Fonte:</b> Lorem ipsum dolor sit amet, consectetur</p>
+            <p class="elemento-acessibilidade"></p>
+          </div>
+
+          <!--FIM BOX IMAGEM -->
+
+            <p class="p-cont">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex excepturi expedita magni debitis illo soluta
+            beatae commodi nihil quaerat magnam voluptates a sequi suscipit voluptatibus
+            cupiditate ullam nulla, non tempora?</p>
+
+
+
+        <div class="acordion-grande">
+          <div class="accordion-2">
+            <div class="accordion-wrapper">
+              <div class="accordion-item">
+                <div data-w-id="4874a766-01d2-44cf-7618-ad2e77b839cc" class="accordion-title-2">
+                  <h2 class="titulo-accordion"><strong>Aliquam ultricies augue</strong></h2><img
+                    src="images/arrow-branca-baixo.svg" loading="lazy" width="30" alt="" class="seta-animada">
+                </div>
+                <div style="height:0px" class="acordion_content-2">
+                  <div class="text-block-53">
+                    <a href="#" target="_blank" class="link"><span class="text-span-13">Maecenas consectetur lacus
+                        justo, eget lacinia dolor posuere in. In hac habitasse platea dictumst. <strong>Etiam eu erat id
+                          ipsum gravida finibus in sed urna. Cras consectetur auctor ante vitae facilisis</strong>.
+                        Proin finibus arcu magna, ac semper massa finibus sit amet. Pellentesque ut dignissim
+                        mi.</span></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-wrapper">
+              <div class="accordion-item">
+                <div data-w-id="4874a766-01d2-44cf-7618-ad2e77b839db" class="accordion-title-2">
+                  <h2 class="titulo-accordion"><strong>Nulla facilisi</strong></h2><img
+                    src="images/arrow-branca-baixo.svg" loading="lazy" width="30" alt="" class="seta-animada">
+                </div>
+                <div style="height:0px" class="acordion_content-2">
+                  <div class="text-block-53">
+                    <a href="#" target="_blank" class="link"><span class="text-span-13">Maecenas dignissim, magna et
+                        volutpat pretium, quam dui dignissim enim, quis luctus risus urna eu urna. Pellentesque
+                        <em>habitant morbi tristique</em> senectus et netus et malesuada fames ac turpis egestas.
+                        Praesent sollicitudin magna mollis, elementum augue a, rutrum sem.</span></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-wrapper">
+              <div class="accordion-item">
+                <div data-w-id="4874a766-01d2-44cf-7618-ad2e77b839ea" class="accordion-title-2">
+                  <h2 class="titulo-accordion"><strong>Passo 3</strong></h2><img src="images/arrow-branca-baixo.svg"
+                    loading="lazy" width="30" alt="" class="seta-animada">
+                </div>
+                <div style="height:0px" class="acordion_content-2">
+                  <div class="text-block-53">
+                    <a href="#" target="_blank" class="link"><span class="text-span-13">Por fim, acrescentamos novos
+                        métodos para o cálculo da nossa calculadora (como subtração e multiplicação), a fim de verificar
+                        o funcionamento. O resultado ao compilar sugere “10” e “16,2”.</span></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br>
+
+
+
+            <p class="p-cont">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rerum adipisci porro quia fugiat,
+            blanditiis placeat ex? Expedita enim maxime voluptate eos rerum quis quos at
+            impedit dolores! Fugiat, nesciunt possimus?<br><br>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis enim quas autem, quis commodi suscipit. Quam
+            voluptatibus perspiciatis ipsam, sint beatae ratione. Ipsum facilis rem dolorum
+            laborum. Dolores, est quo.<br><br>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex excepturi expedita magni debitis illo soluta
+            beatae commodi nihil quaerat magnam voluptates a sequi suscipit voluptatibus
+            cupiditate ullam nulla, non tempora?</p>
+
+          <!-- TÍTULO H2 -->
+          <h1 class="titulo-conteudo-h1">Lorem ipsum dolor sit amet consectetur adipisicing eli</h1>
+          <!-- FIM H2 -->
+
+          <p class="p-cont">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum repellendus accusantium
+            placeat nemo. Voluptatum ipsam consequuntur id soluta nisi,
+            optio quas amet, cumque commodi veniam eaque neque et placeat incidunt.<br><br>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima facere dolor nostrum ratione aliquam esse?
+            Ea temporibus dolorum ex dicta consectetur amet, ratione
+            autem sint nesciunt assumenda. Error, accusantium exercitationem. Lorem ipsum dolor sit amet consectetur
+            adipisicing elit. Optio voluptatum nobis animi reprehenderit
+            recusandae alias quos ea explicabo doloremque, totam excepturi dignissimos quae! Aspernatur exercitationem
+            quos nemo neque ullam. Inventore.</p>
+
+          <!-- IMAGEM -->
+          <!-- ALTERAR ENDEREÇO DA IMAGEM, LEGENDA E FONTE (SE NECESSÁRIO ALTERAR WIDTH NA DIV)-->
+          <div class="box-img" style="width: 100%; max-width: 700px; min-width: 360px;">
+            <p class="p-cont-font"><b>Figura 2:</b>Lorem ipsum dolor sit amet, consectetur</p>
+            <!--<p class="titulo-elemento">Janela de download do Android Studio para Windows</p>--><img
+              src="images/img-mod1/instalacao-android-studio.jpg" data-lity loading="lazy" style="opacity:0"
+              data-w-id="4874a766-01d2-44cf-7618-ad2e77b83a0a"
+              alt="#PraCegoVer: na figura, temos um print da janela de download do Android Studio para Windows. Nela, aparece a mascote do ambiente um botão em verde para download mais abaixo."
+              title="#PraCegoVer: na figura, temos um print da janela de download do Android Studio para Windows. Nela, aparece a mascote do ambiente um botão em verde para download mais abaixo."
+              class="image-24">
+            <p class="p-cont-font"><b>Fonte:</b> Lorem ipsum dolor sit amet, consectetur</p>
+            <p class="elemento-acessibilidade"></p>
+          </div>
+
+          <!--FIM BOX IMAGEM -->
+
+          <p class="p-cont">Lorem ipsum dolor sit <a href="#"
+              onclick="javascript:abrirJanela('https://developer.android.com/studio', 600, 500);" class="link-2">Android
+              SDK</a> dolor nostrum ratione aliquam esse? Ea temporibus dolorum ex dicta consectetur amet, ratione
+            autem sint nesciunt assumenda. Error, accusantium exercitationem. Lorem ipsum dolor sit amet consectetur
+            adipisicing elit. <a href="#"
+              onclick="javascript:abrirJanela('https://developer.android.com/studio#downloads', 600, 500);"
+              class="link-2">Android Studio Downloads</a>.<br><br>Lorem ipsum dolor sit amet consectetur adipisicing
+            elit.</p>
+
+
+
+
+
+        <div class="sanfona-menor">
+          <div class="questin-drop">
+            <div data-w-id="87d77ff1-09ed-d364-f470-d04303540789" class="dropdown-question">
+              <div class="drop-button">
+                <div
+                  style="-webkit-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0);-moz-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0);-ms-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0);transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0)"
+                  class="drop-button-h-5"></div>
+                <div
+                  style="-webkit-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0);-moz-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0);-ms-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0);transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0)"
+                  class="drop-button-v-5"></div>
+              </div>
+              <div class="button-down-2">
+                <div class="text-block-4"><strong class="bold-text-83">Morbi imperdiet</strong></div>
+              </div>
+            </div>
+            <div style="height:0px" class="dropdown-content-answer-5">
+              <div class="block-text">
+                <p class="paragraph-answer">Nullam sit amet commodo purus, sed vestibulum ante. Maecenas consectetur
+                  lacus justo, eget lacinia dolor posuere in. In hac habitasse platea dictumst. Etiam eu erat id ipsum
+                  gravida finibus in sed urna. Cras consectetur auctor ante vitae facilisis. Proin finibus arcu magna,
+                  ac semper massa finibus sit amet. Pellentesque ut dignissim mi. Phasellus lectus urna, mattis quis
+                  fermentum varius, suscipit id dui. Nunc laoreet tortor ut tempus pretium.</p>
+              </div>
+            </div>
+          </div>
+          <div class="questin-drop">
+            <div data-w-id="87d77ff1-09ed-d364-f470-d04303540796" class="dropdown-question">
+              <div class="drop-button">
+                <div
+                  style="-webkit-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0);-moz-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0);-ms-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0);transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0)"
+                  class="drop-button-h-5"></div>
+                <div
+                  style="-webkit-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0);-moz-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0);-ms-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0);transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0)"
+                  class="drop-button-v-5"></div>
+              </div>
+              <div class="button-down-2">
+                <div class="text-block-4"><strong class="bold-text-83">Donec scelerisque</strong></div>
+              </div>
+            </div>
+            <div style="height:0px" class="dropdown-content-answer-5">
+              <div class="block-text">
+                <p class="paragraph-answer">Integer sodales nunc a urna rhoncus, non ullamcorper odio dictum.
+                  Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Mauris
+                  nunc ante, pulvinar vel rhoncus nec, placerat non metus. Ut molestie maximus ornare. Donec id finibus
+                  justo, vel dictum lorem. Duis sed ex convallis, accumsan neque ac, efficitur risus. Nam a pellentesque
+                  nisl. Aenean volutpat tempor ultrices. Etiam laoreet massa augue, ut gravida velit imperdiet vel.
+                  Etiam neque diam, convallis sed ligula venenatis, vehicula convallis ante. Maecenas eget mattis justo.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="questin-drop">
+            <div data-w-id="87d77ff1-09ed-d364-f470-d043035407a3" class="dropdown-question">
+              <div class="drop-button">
+                <div
+                  style="-webkit-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0);-moz-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0);-ms-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0);transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0)"
+                  class="drop-button-h-5"></div>
+                <div
+                  style="-webkit-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0);-moz-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0);-ms-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0);transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0)"
+                  class="drop-button-v-5"></div>
+              </div>
+              <div class="button-down-2">
+                <div class="text-block-4"><strong class="bold-text-83">Quisque bibendum ornare aliquet</strong></div>
+              </div>
+            </div>
+            <div style="height:0px" class="dropdown-content-answer-5">
+              <div class="block-text">
+                <p class="paragraph-answer">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed posuere
+                  libero, ut finibus massa. Aenean purus urna, efficitur et elementum nec, venenatis at leo. Aenean ac
+                  enim vestibulum, dignissim nunc a, feugiat enim. Nullam condimentum efficitur enim non luctus.
+                  Suspendisse varius malesuada consequat. Interdum et malesuada fames ac ante ipsum primis in faucibus.
+                  Cras rhoncus, quam a accumsan euismod, lorem libero accumsan massa, dapibus facilisis neque massa ac
+                  ipsum.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+
+
+          <p class="p-cont">Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto voluptas perferendis in ipsam, dolores,
+            minima culpa assumenda quaerat, qui eveniet ipsa a. Deleniti est
+            corporis, id repellat in qui a?</p>
+
+
+
+          <!-- IMAGEM -->
+          <!-- ALTERAR ENDEREÇO DA IMAGEM, LEGENDA E FONTE (SE NECESSÁRIO ALTERAR WIDTH NA DIV)-->
+          <div class="box-img" style="width: 60%;">
+            <p class="p-cont-font"><b>Figura 3:</b>Lorem ipsum dolor sit amet, consectetur</p>
+            <!--<p class="titulo-elemento">Requisitos de hardware</p>--><img
+              src="images/img-mod1/requisitos-android-studio.png" data-lity loading="lazy" style="opacity:0"
+              data-w-id="4874a766-01d2-44cf-7618-ad2e77b83a0a"
+              alt="#PraCegoVer: na figura, temos um print dos requisitos de hardware para cada plataforma, estando um do lado do outro, incluindo Windows, Mac, Linux e Chrome OS."
+              title="#PraCegoVer: na figura, temos um print dos requisitos de hardware para cada plataforma, estando um do lado do outro, incluindo Windows, Mac, Linux e Chrome OS."
+              class="image-24">
+            <p class="p-cont-font"><b>Fonte: </b>Lorem ipsum dolor sit amet, consectetur</p>
+            <p class="elemento-acessibilidade"></p>
+          </div>
+
+          <!--FIM BOX IMAGEM -->
+
+          <p class="p-cont">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nam, accusamus. Aspernatur nulla
+            veniam consectetur sunt ad architecto nam. Fugiat
+            saepe ipsam quaerat, eaque atque minima consequatur quos labore voluptatibus rerum. “<a href="#"
+              onclick="javascript:abrirJanela('https://developer.android.com/studio/install?hl=pt-br#windows', 600, 500);"
+              class="link-2">Instalar o Android Studio</a>”, bnulla veniam consectetur sunt ad architecto nam.<br><br>
+            Nulla veniam consectetur sunt ad architecto nam
+          </p>
+
+
+          <p class="p-cont">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas error est explicabo sint
+            dolorum incidunt qui aut quam nobis, asperiores quasi,
+            ipsa eaque nihil, assumenda pariatur blanditiis? Possimus, dolorem provident! Lorem ipsum dolor sit amet
+            consectetur adipisicing elit. Quam pariatur error possimus
+            rerum quidem consequatur, deleniti est? Non quaerat neque eius odit sit id reiciendis, laboriosam laborum
+            magnam repudiandae consectetur?</p>
+
+          <!-- BOX Verificação de Aprendizagem -->
+          <div class="box-atencao">
+            <div data-w-id="b6d8b380-b475-f985-333a-36dfa246a95c" class="fundo-icon verif-apren"><img
+                src="images/verificacao-aprendizagem-br_1verificacao-aprendizagem-br.png" loading="lazy" alt=""
+                class="image-23"></div>
+            <div class="content-box-destaque box-content-1">
+              <h3 class="titulo-destaque titulo-verif">Verificação de Aprendizagem</h3>
+              <div class="cont-box-p p-cont">Ximaximi nitatus aut aut etur rehenimi, suntaborio que videbit, tecta si
+                blabo. Itatia disaut qui officimi, sequo omnimol umquiaalitaIpitat quam cone prae. Ut estrum</div>
+            </div>
+          </div>
+          <!-- FIM BOX Verificação de Aprendizagem -->
+
+          <p class="p-cont">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum architecto facilis
+            dignissimos corrupti est, quis saepe sit modi, dolorum
+            minima mollitia enim! Adipisci cupiditate vitae nemo rerum et corrupti totam! Lorem ipsum dolor sit amet
+            consectetur adipisicing elit. Numquam cum magnam
+            architecto accusantium, incidunt impedit eligendi a reprehenderit quidem voluptatem. Nobis ipsam hic
+            praesentium velit vel, accusantium numquam porro aut?<br><br>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+
+          <!-- VÍDEO -->
+          <div class="video-destaque">
+            <div class="box-video-left">
+              <div class="box-img-video"><img
+                  src="https://uploads-ssl.webflow.com/610d6c929ae0c193176ccad0/610d6c929ae0c173ae6ccb06_video-br.png"
+                  loading="lazy" alt="" class="image-26"></div>
+              <h1 data-w-id="4874a766-01d2-44cf-7618-ad2e77b83979" style="opacity:0" class="titulo-destaque h3-video">
+                Vídeo</h1>
+              <div class="linha-branca linha-content"></div>
+
+              <p data-w-id="4874a766-01d2-44cf-7618-ad2e77b8397c" style="opacity:0" class="p-cont branco-p">Lorem ipsum
+                dolor sit amet, consectetur adipisicing elit<br></p>
+
+              <p data-w-id="4874a766-01d2-44cf-7618-ad2e77b8397c" class="p-cont branco-p">Confira <a href="#"
+                  onclick="javascript:abrirJanela('pdfs/integra/Video 3.pdf', 600, 500);" class="link-3">aqui</a> o que
+                foi abordado no vídeo.</p>
+            </div>
+            <div class="box-video-right">
+              <div data-w-id="4874a766-01d2-44cf-7618-ad2e77b83980" style="opacity:0"
+                class="video-width video-cont-int">
+                <div class="video">
+                  <div style="padding-top:56.17021276595745%" class="video-2 w-video w-embed"><iframe
+                      class="embedly-embed"
+                      src="https://videos3.fb.org.br/FundacaoBradesco/Externos/DE/EV/Aplicacoes_Mobile/Video3_AplicMobile.mp4"
+                      scrolling="no" title="YouTube embed" frameborder="0" allow="fullscreen"
+                      allowfullscreen="true"></iframe></div>
+                </div>
+              </div>
+            </div>
+            <!-- ACESSIBILIDADE -->
+            <p class="elemento-acessibilidade"
+              style="height: 0 !important; width: 0 !important; position: absolute !important; overflow: hidden !important; opacity: 0 !important; padding: 0 !important;">
+            </p>
+            <p class="elemento-acessibilidade"
+              style="height: 0 !important; width: 0 !important; position: absolute !important; overflow: hidden !important; opacity: 0 !important; padding: 0 !important;">
+            </p>
+          </div>
+          <!-- FIM VÍDEO -->
+
+          <p class="p-cont">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum architecto facilis
+            dignissimos corrupti est, quis saepe sit modi, dolorum
+            minima mollitia enim! Adipisci cupiditate vitae nemo rerum et corrupti totam! Lorem ipsum dolor sit amet
+            consectetur adipisicing elit. Numquam cum magnam
+            architecto accusantium, incidunt impedit eligendi a reprehenderit quidem voluptatem. Nobis ipsam hic
+            praesentium velit vel, accusantium numquam porro aut?<br><br>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+
+          <!-- BOX Importante -->
+          <div class="box-atencao">
+            <div class="fundo-icon fundo-atencao"><img
+                src="https://uploads-ssl.webflow.com/610d6c929ae0c193176ccad0/610d6c929ae0c111b96ccb01_atencao-br.png"
+                loading="lazy" alt="" class="image-23"></div>
+            <div class="content-box-destaque box-content-1">
+              <h3 class="titulo-destaque tutilo-atencaooi">Importante</h3>
+              <div class="cont-box-p p-cont">Sed commodo odio at lacus porttitor suscipit. Mauris id dapibus purus. Nulla
+                facilisi. Quisque ultrices justo a lacinia suscipit. Curabitur lacinia pharetra turpis et pharetra. Nam
+                eget magna purus. Integer risus sem, congue vitae dolor sed, pellentesque mollis sapien. Nulla iaculis
+                aliquam mi, id varius libero ultricies sed.</div>
+            </div>
+          </div>
+          <!-- FIM BOX Importante -->
+
+          <p class="p-cont">Lorem ipsum dolor sit amet,</a> consectetur adipisicing elit. Nostrum architecto facilis
+            dignissimos corrupti est, quis saepe sit modi, dolorum
+            minima mollitia enim!</p>
+
+          <!-- IMAGEM -->
+          <!-- ALTERAR ENDEREÇO DA IMAGEM, LEGENDA E FONTE (SE NECESSÁRIO ALTERAR WIDTH NA DIV)-->
+          <div class="box-img" style="width: 100%; max-width: 700px; min-width: 360px;">
+            <p class="p-cont-font"><b>Figura 4:</b>Lorem ipsum dolor sit amet, consectetur</p>
+            <!--<p class="titulo-elemento">Executando emulador</p>--><img src="images/img-mod1/executando-emulador.jpg"
+              data-lity loading="lazy" style="opacity:0" data-w-id="4874a766-01d2-44cf-7618-ad2e77b83a0a"
+              alt="#PraCegoVer: na figura, temos um print da execução do emulador, estando a opção “executar” em destaque à direita, na seção de &quot;Actions&quot;."
+              title="#PraCegoVer: na figura, temos um print da execução do emulador, estando a opção “executar” em destaque à direita, na seção de &quot;Actions&quot;."
+              class="image-24">
+            <p class="p-cont-font"><b>Fonte:</b> Lorem ipsum dolor sit amet, consectetur</p>
+            <p class="elemento-acessibilidade"></p>
+          </div>
+
+          <!--FIM BOX IMAGEM -->
+
+          <p class="p-cont">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum architecto facilis
+            dignissimos corrupti est, quis saepe sit modi, dolorum
+            minima mollitia enim! Adipisci cupiditate vitae nemo rerum et corrupti totam! Lorem ipsum dolor sit amet
+            consectetur adipisicing elit. Numquam cum magnam
+            architecto accusantium, incidunt impedit eligendi a reprehenderit quidem voluptatem. Nobis ipsam hic
+            praesentium velit vel, accusantium numquam porro aut?<br><br>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+
+          <!-- IMAGEM -->
+          <!-- ALTERAR ENDEREÇO DA IMAGEM, LEGENDA E FONTE (SE NECESSÁRIO ALTERAR WIDTH NA DIV)-->
+          <div class="box-img" style="width: 25%; min-width: 320px;">
+            <p class="p-cont-font"><b>Figura 5:</b>Lorem ipsum dolor sit amet, consectetur</p>
+            <img src="images/img-mod1/emulador-01.png" data-lity loading="lazy" style="opacity:0"
+              data-w-id="4874a766-01d2-44cf-7618-ad2e77b83a0a"
+              alt="#PraCegoVer: na figura, temos a ilustração de um celular com o emulador em execução. Aparece uma tela inicial no aparelho, junto de seus botões e outras particularidades, como horário, nível de bateria e rede. Do lado direito, ainda há um menu vertical com opções."
+              title="#PraCegoVer: na figura, temos a ilustração de um celular com o emulador em execução. Aparece uma tela inicial no aparelho, junto de seus botões e outras particularidades, como horário, nível de bateria e rede. Do lado direito, ainda há um menu vertical com opções."
+              class="image-24">
+            <p class="p-cont-font"><b>Fonte:</b> Lorem ipsum dolor sit amet, consectetur</p>
+            <p class="elemento-acessibilidade"></p>
+          </div>
+
+          <!--FIM BOX IMAGEM -->
+
+
+          <!--------------------------------------------------------->
+
+
+        </div>
+      </div>
+
+
+      <div class="bg-final">
+        <div class="c-p-cons">
+          <h1 class="heading-4" style="width:58%;"><strong class="bold-text-90">Em Síntese</strong></h1>
+          <div class="linha-branca linha-br"></div>
+          <p class="p-cont branco-p" style="text-align: left; width: 58%;">Lorem ipsum dolor sit amet, consectetu
+            <em>mobile</em> e viu sobre o contexto do mercado atual desse segmento, o qual está em grande expansão. Além
+            disso, aprendeu um pouco sobre as plataformas de desenvolvimento (do ambiente híbrido e nativo) e a sua
+            importância, principalmente, quando estiver produzindo para seus futuros clientes.<br><br>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem sunt eligendi asperiores possimus deleniti.
+            Cumque consequatur, deleniti fugiat eaque eum exercitationem. Molestias aliquam voluptates sed, maxime quasi
+            eius aliquid nam!<br><br>
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Exercitationem corporis deserunt sit
+            necessitatibus
+            laborum, deleniti inventore expedita pariatur aspernatur laboriosam quia animi eaque quasi possimus minus
+            eveniet voluptate ullam quo.<em>Software Development Kit</em>(ou kit de desenvolvimento de software em
+            português).<br><br>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut, pariatur laudantium! Dolores, provident
+            aliquid.
+            Saepe eligendi perspiciatis quidem distinctio modi veritatis. Incidunt reiciendis corrupti ex eaque ea quam
+            earum adipisci!<br><br>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Obcaecati dolorem quasi et fugit alias? Fuga
+            praesentium tempora dignissimos neque voluptate fugit porro magnam nisi nulla, perspiciatis dolores
+            blanditiis assumenda. Sequi. <em>mobile</em>. Vamos lá?!<br><br>
+            Selecione o botão “Avançar” e confira!
+          </p>
+
+          <div class="div-block-152">
+            <a href="modulo-0.html" class="a-botton branco-bt new-espaco w-inline-block">
+              <div class="text-a">Voltar</div>
+            </a>
+            <a href="modulo-2.html" class="a-botton branco-bt new-espaco w-inline-block">
+              <div class="text-a"><strong>Avançar</strong></div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="nav wf-section">
+    <div class="menu">
+      <div class="main-menu">
+        <div class="logo"><img src="images/logo-clean.png" loading="lazy" alt="" class="imagem-logo"
+            style="width: 55%;"></div>
+        <div class="titulo-cursoi">Lorem ipsum dolor&nbsp;<em>Lorem</em>&nbsp;Lorem ipsum dolor</div>
+        <div class="dropdown-trigger h1-tiulo">
+          <div style="background-color:rgb(255,255,255)" class="div-block mein"></div>
+          <div style="background-color:rgb(255,255,255)" class="div-block mein"></div>
+          <div style="background-color:rgb(255,255,255)" class="div-block mein"></div>
+        </div>
+        <div style="opacity:0;display:none" class="nav-menu">
+          <div class="accordion" id="accordionExample">
+            <div class="card">
+              <div class="card-header" id="headingOne">
+                <h5 class="mb-0">
+                  <button class="btn collapsed btn-collapsed-menu" type="button" data-toggle="collapse"
+                    data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    <b>Unidade #0</b>
+                  </button>
+                </h5>
+              </div>
+
+              <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div class="card-body d-flex flex-column">
+                  <a href="./modulo-0.html" class="m-2">Tema1</a>
+                  <a href="#" class="m-2">Tema2</a>
+                  <a href="#" class="m-2">Tema3</a>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-header" id="headingTwo">
+                <h5 class="mb-0">
+                  <button class="btn collapsed btn-collapsed-menu" type="button" data-toggle="collapse"
+                    data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    <b>Unidade #1</b>
+                  </button>
+                </h5>
+              </div>
+              <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                <div class="card-body d-flex flex-column">
+                  <a href="./modulo-1.html" class="m-2">Tema1</a>
+                  <a href="#" class="m-2">Tema2</a>
+                  <a href="#" class="m-2">Tema3</a>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-header" id="headingThree">
+                <h5 class="mb-0">
+                  <button class="btn collapsed btn-collapsed-menu" type="button" data-toggle="collapse"
+                    data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    <b>Unidade #2</b>
+                  </button>
+                </h5>
+              </div>
+              <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                <div class="card-body d-flex flex-column">
+                  <a href="./modulo-2.html" class="m-2">Tema1</a>
+                  <a href="#" class="m-2">Tema2</a>
+                  <a href="#" class="m-2">Tema3</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="div-block-3">
+            <div class="div-block-4">Acessibilidade</div>
+            <div class="text-acess">
+              <div class="acess-font">Fonte:</div>
+              <div class="acess-font-2">Contraste:</div>
+            </div>
+            <div class="div-block-5">
+              <div class="bt-font">
+                <div id="a_mais" class="bt-font-am">
+                  <div class="text-block-3">Aa</div><img src="images/plus.svg" loading="lazy" alt="" class="image-20">
+                </div>
+                <div id="a_menos" class="bt-font-am">
+                  <div class="text-block-3">Aa</div><img src="images/menos.svg" loading="lazy" alt="" class="image-20">
+                </div>
+                <div id="a_reset" class="bt-font-am">
+                  <div class="text-block-3">Aa</div><img src="images/reset.svg" loading="lazy" alt=""
+                    class="image-20 reset-bt">
+                </div>
+              </div>
+              <div class="div-block-6">
+                <div class="div-block-7">
+                  <div class="icon-a"><img src="images/icon-contraste.png " loading="lazy" alt="" class="image-21 moon">
+                    <a href="#" class="toogle-switch w-inline-block" data-id="moon">
+                      <div class="toogle-switch-before"></div>
+                      <div class="toogle-switch-checked"></div>
+                    </a>
+                  </div>
+                </div>
+                <div class="div-block-7">
+                  <div class="icon-a"><img src="images/moon.svg" loading="lazy" alt="" class="image-21">
+                    <a href="#" class="toogle-switch w-inline-block" data-id="sun">
+                      <div class="toogle-switch-before"></div>
+                      <div class="toogle-switch-checked"></div>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="div-block-3">
+            <div class="div-block-4">Marca texto</div>
+            <div class="highlighter-colors">
+              <div class="highlighter-color active" data-color=""></div>
+              <div class="highlighter-color" data-color="#eae13a"></div>
+              <div class="highlighter-color" data-color="#6bb866"></div>
+              <div class="highlighter-color" data-color="#61c0bc"></div>
+              <div class="highlighter-color" data-color="#e6791f"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="header-bar-progress">
+      <div class="progress-container">
+        <div class="progress-bar" id="myBar"></div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="constructor-modal" tabindex="-1" aria-labelledby="construtoresModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <img src="images/img-mod1/construtor-modal.png" loading="lazy" class="w-100" />
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="./vendor/lity/js/lity.min.js"></script>
+  <script src="./vendor/texthighlighter/js/TextHighlighter.min.js"></script>
+
+  <script src="js/webflow.js" type="text/javascript"></script>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js"
+    integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"
+    integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+    crossorigin="anonymous"></script>
+
+
+  <!-- [if lte IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif] -->
+</body>
+
+</html>
