@@ -1,8 +1,4 @@
-# allsilveira.github.io
-Utilizo este repositório para publicar meus trabalhos web.
+# O que você vai encontrar aqui?
 
-# o que você vai encontrar aqui?
-
-- templates que estou desenvolvendo como aprendizado;
-- exercícios das aulas da Ulbra.
+[Projeto Dark Mode](https://allsilveira.github.io/dark-mode-project/)
 
