@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./assets/css/style-quiz.css" rel="stylesheet" type="text/css">
+    <title>Quiz</title>
+</head>
+<body>
+    <div class="container-question">
+        <ul class="list-question">
+            <li>
+                <div class="container">
+                    <div class="container-question-grid">
+                        <div class="gradient-background">
+                            <div>
+                                <h2 class="heading"><strong class="bold-text-91">Quiz #1</strong></h2>
+                                <div class="linha-branca"></div>
+                            </div>
+                            <p>Qual a capital do Brasil?<br>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque inventore praesentium eaque voluptatibus rerum aliquam explicabo quaerat odio repellat dignissim</p>
+                        </div>
+                        <div class="gradient-background-img">
+                            <!-- image -->
+                        </div>
+                    </div>
+
+                    <div class="overlay"></div>
+                </div>
+
+                <div class="question">
+                    <div class="option">
+                        <input onclick="checkAnswer(this, 'D')" class="option-btn toggleButton" id="optionA"
+                            type="button" value="A">
+                        <span>Rio de Janeiro</span>
+                    </div>
+                    <div class="option">
+                        <input onclick="checkAnswer(this, 'D')" class="option-btn toggleButton" id="optionB"
+                            type="button" value="B">
+                        <span>São Paulo</span>
+                    </div>
+                    <div class="option">
+                        <input onclick="checkAnswer(this, 'D')" class="option-btn toggleButton" id="optionC"
+                            type="button" value="C">
+                        <span>Distrito Federal</span>
+                    </div>
+                    <div class="option">
+                        <input onclick="checkAnswer(this, 'D')" class="option-btn toggleButton" id="optionD"
+                            type="button" value="D">
+                        <span>Brasília</span>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <script src="/assets/js/checkAnswers.js"></script>
+</body>
+</html>
