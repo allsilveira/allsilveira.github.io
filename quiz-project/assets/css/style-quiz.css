@@ -64,10 +64,6 @@
         border-radius: 50px 50px 0px 0px;
     }
 
-    /* .gradient-background-img{
-
-    } */
-
     img {
         border-radius: 0px 0px 50px 50px !important;
         height: 60% !important;
@@ -120,7 +116,7 @@ input[type="button"].option-btn:hover {
     margin: 0 auto;
     top: 0;
     width: 100%;
-    height: 66%;
+    height: 66.5%;
     z-index: 1;
     border-radius: 50px;
     background: linear-gradient(0deg, rgba(131, 185, 209, 0.8) 0%, rgba(110, 71, 225, 0.7) 100%);
