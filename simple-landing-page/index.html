@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./assets/js/script.js" defer></script>
+    <title>Landing Page</title>
+    <link rel="stylesheet" href="./assets/css/elements.css">
+    <link rel="stylesheet" href="./assets/css/variables.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <input class="close-menu" type="checkbox" name="close-menu" id="close-menu" role="button" aria-label="Close menu">
+    <label class="close-menu-label" for="close-menu" title="Close menu"></label>
+
+    <aside class="menu white-bg">
+        <div class="main-content menu-content">
+            <h1 onclick="getElementById('close-menu').checked = false;">
+                <a href="#home">LOGO</a>
+            </h1>
+            <nav>
+                <ul onclick="getElementById('close-menu').checked = false;">
+                    <li><a href="#intro">intro</a></li>
+                    <li><a href="#top3">top 3</a></li>
+                    <li><a href="#gallery">galeria</a></li>
+                    <li><a href="#work">trabalhos</a></li>
+                    <li><a href="#pricing">preços</a></li>
+                    <li><a href="#contact">contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </aside>
+    <section id="home" class="container main-bg">
+        <div class="main-content header-content">
+            <div class="header-text">
+                <h2>Lorem ipsum dolor sit amet</h2>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eligendi itaque, aut esse aliquid, sint veniam qui nesciunt doloremque tempore voluptatem quas repellat libero? Libero, tempore expedita commodi eaque reiciendis officia?</p>
+            </div>
+            <div class="header-img">
+                <img src="./assets/img/header-img.svg" alt="ParaTodosVerem: à esquerda, um bloco azul com o símbolo de chaves “{}” representa o CSS. Uma pessoa está escalando esse bloco. No centro, um bloco amarelo com as letras “JS” simboliza o JavaScript. Uma pessoa está em pé sobre ele. À direita, um bloco vermelho com as letras “HTML” e o número “5” representa a quinta versão do HTML. Outra pessoa parece estar empurrando esse bloco.">
+            </div>
+        </div>
+    </section>
+    <section id="intro" class="container white-bg">
+        <div class="main-content top3-content">
+            <h2>Trabalhos Recentes</h2>
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eligendi itaque, aut esse aliquid, sint veniam qui nesciunt doloremque tempore voluptatem quas repellat libero? Libero, tempore expedita commodi eaque reiciendis officia?</p>
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eligendi itaque, aut esse aliquid, sint veniam qui nesciunt doloremque tempore voluptatem quas repellat libero? Libero, tempore expedita commodi eaque reiciendis officia?</p>
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eligendi itaque, aut esse aliquid, sint veniam qui nesciunt doloremque tempore voluptatem quas repellat libero? Libero, tempore expedita commodi eaque reiciendis officia?</p>
+        </div>
+    </section>
+    <section id="top3" class="grid container main-bg">
+        <div class="main-content grid-content">
+            <h2 class="title-top3">TOP 3</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+            <div class="container-grid">
+                <article>
+                    <h3>Lorem ipsum</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt nisi, numquam esse nesciunt quae et, mollitia harum excepturi, eius velit ipsa non nemo dignissimos! Quis culpa quo et nam est! Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt nisi, numquam esse nesciunt quae et, mollitia harum excepturi, eius velit ipsa non nemo dignissimos! Quis culpa quo et nam est!</p>
+                </article>
+                <article>
+                    <h3>ALorem ipsum</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt nisi, numquam esse nesciunt quae et, mollitia harum excepturi, eius velit ipsa non nemo dignissimos! Quis culpa quo et nam est! Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt nisi, numquam esse nesciunt quae et, mollitia harum excepturi, eius velit ipsa non nemo dignissimos! Quis culpa quo et nam est!</p>
+                </article>
+                <article>
+                    <h3>Lorem ipsum</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt nisi, numquam esse nesciunt quae et, mollitia harum excepturi, eius velit ipsa non nemo dignissimos! Quis culpa quo et nam est! Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt nisi, numquam esse nesciunt quae et, mollitia harum excepturi, eius velit ipsa non nemo dignissimos! Quis culpa quo et nam est!</p>
+                </article>
+            </div>
+        </div>
+    </section>
+    <section id="gallery" class="grid container white-bg">
+        <div class="main-content grid-content">
+            <h2 class="title-top3">Galeria</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+            <div class="container-grid">
+                <div class="gallery">
+                    <img src="./assets/img/gallery-1.jpg" alt="Imagem aleatória do Pexel">
+                </div>
+                <div class="gallery">
+                    <img src="./assets/img/gallery-2.jpg" alt="Imagem aleatória do Pexel">
+                </div>
+                <div class="gallery">
+                    <img src="./assets/img/gallery-3.jpg" alt="Imagem aleatória do Pexel">
+                </div>
+                <div class="gallery">
+                    <img src="./assets/img/gallery-4.jpg" alt="Imagem aleatória do Pexel">
+                </div>
+                <div class="gallery">
+                    <img src="./assets/img/gallery-5.jpg" alt="Imagem aleatória do Pexel">
+                </div>
+                <div class="gallery">
+                    <img src="./assets/img/gallery-6.jpg" alt="Imagem aleatória do Pexel">
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="work" class="container main-bg">
+        <div class="main-content grid-content">
+            <h2 class="title-top3">TOP 3 trabalhos</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+            <div class="container-grid">
+                <article>
+                    <h3>Lorem ipsum</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt nisi, numquam esse nesciunt quae et, mollitia harum excepturi, eius velit ipsa non nemo dignissimos! Quis culpa quo et nam est! Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt nisi, numquam esse nesciunt quae et, mollitia harum excepturi, eius velit ipsa non nemo dignissimos! Quis culpa quo et nam est!</p>
+                </article>
+                <article>
+                    <h3>Lorem ipsum</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt nisi, numquam esse nesciunt quae et, mollitia harum excepturi, eius velit ipsa non nemo dignissimos! Quis culpa quo et nam est! Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt nisi, numquam esse nesciunt quae et, mollitia harum excepturi, eius velit ipsa non nemo dignissimos! Quis culpa quo et nam est!</p>
+                </article>
+                <article>
+                    <h3>Lorem ipsum</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt nisi, numquam esse nesciunt quae et, mollitia harum excepturi, eius velit ipsa non nemo dignissimos! Quis culpa quo et nam est! Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt nisi, numquam esse nesciunt quae et, mollitia harum excepturi, eius velit ipsa non nemo dignissimos! Quis culpa quo et nam est!</p>
+                </article>
+            </div>
+        </div>
+    </section>
+    <section id="pricing" class="container white-bg">
+        <div class="main-content top3-content">
+            <h2>Preços</h2>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Error harum ipsam debitis nesciunt. Hic, voluptatibus! Distinctio in possimus aliquid soluta voluptate suscipit commodi atque vitae tenetur quas, repudiandae, molestiae corrupti eveniet eligendi quia non dolorem molestias. Totam rem enim asperiores.</p>
+
+            <div class="responsive-table">
+                <table>
+                    <caption>Tabela de preços</caption>
+
+                    <thead>
+                        <tr>
+                            <th>Título 1</th>
+                            <th>Título 2</th>
+                            <th>Título 3</th>
+                            <th>Título 4</th>
+                            <th>Título 5</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Conteúdo 1</td>
+                            <td>Conteúdo 2</td>
+                            <td>Conteúdo 3</td>
+                            <td>Conteúdo 4</td>
+                            <td>Conteúdo 5</td>
+                        </tr>
+                        <tr>
+                            <td>Conteúdo 1</td>
+                            <td>Conteúdo 2</td>
+                            <td>Conteúdo 3</td>
+                            <td>Conteúdo 4</td>
+                            <td>Conteúdo 5</td>
+                        </tr>
+                        <tr>
+                            <td>Conteúdo 1</td>
+                            <td>Conteúdo 2</td>
+                            <td>Conteúdo 3</td>
+                            <td>Conteúdo 4</td>
+                            <td>Conteúdo 5</td>
+                        </tr>
+                        <tr>
+                            <td rowspan="2">Conteúdo 1</td>
+                            <td>Conteúdo 2</td>
+                            <td>Conteúdo 3</td>
+                            <td>Conteúdo 4</td>
+                            <td>Conteúdo 5</td>
+                        </tr>
+                        <tr>
+                            <td>Conteúdo 2</td>
+                            <td>Conteúdo 3</td>
+                            <td>Conteúdo 4</td>
+                            <td>Conteúdo 5</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Rodapé 1</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </section>
+    <section id="contact" class="container main-bg">
+        <div class="main-content header-content">
+            <div class="header-text">
+                <h2>Entre em contato conosco!</h2>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eligendi itaque, aut esse aliquid, sint veniam qui nesciunt doloremque tempore voluptatem quas repellat libero? Libero, tempore expedita commodi eaque reiciendis officia?</p>
+            </div>
+            <div class="header-img">
+                <img src="./assets/img/contact-us.svg" alt="ParaTodosVerem: A imagem mostra uma figura estilizada em azul com um fundo escuro. A pessoa aponta para um avião de papel, enquanto uma linha conecta o avião a um ícone de envelope, sugerindo o envio de uma mensagem.">
+            </div>
+
+            <div class="contact-form">
+                <fieldset class="form-grid">
+                    <legend>Entre em contato</legend>
+
+                    <div class="form-group">
+                        <label for="first-name">Nome:</label>
+                        <input type="text" name="first-name" id="first-name" placeholder="Nome">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="last-name">Sobrenome:</label>
+                        <input type="text" name="last-name" id="last-name" placeholder="Sobrenome">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="last-name">E-mail:</label>
+                        <input type="email" name="email" id="email" placeholder="E-mail">
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="last-name">Mensagem:</label>
+                        <textarea name="message" id="message" cols="30" rows="10" placeholder="Escreva aqui..."></textarea>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <button type="submit">Enviar mensagem</button>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer white-bg">
+        <p>Feito por Alessandra Silveira</p>
+    </footer>
+    <a class="back-to-top" href="#home">🠕</a>
+</body>
+
+</html>
